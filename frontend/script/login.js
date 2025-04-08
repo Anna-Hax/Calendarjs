@@ -1,20 +1,23 @@
+const postlogincred = 'http://localhost:3000/login/'
 document.getElementById('submitBtn').addEventListener('click', async (event) => {
     
     event.preventDefault();
+    const name = document.getElementById('name').value
+    const password = document.getElementById('password').value
     const headers = {'Content-Type':'application/json',
         'Access-Control-Allow-Origin':'*',
         'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS, GET'}
     try{
-        const email = document.getElementById('email')
-        const password = document.getElementById('password')
+       
         const response = await fetch(postlogincred, {
             method:'POST',
             headers: headers,
-            body: JSON.stringify({email, password})
+            body: JSON.stringify({name, password})
         });
 
         if (response.ok){
-            window.location.href = 'info.html';
+            console.log(response);
+            alert('login successful')
     
         } else{
             const errorData = await response.json();

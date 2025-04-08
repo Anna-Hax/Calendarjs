@@ -1,0 +1,81 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+}
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  background-color: #071E3D;
+  color: white;
+  transition: left 0.3s ease;
+  padding: 1rem;
+  z-index: 1000;
+}
+.sidebar.show {
+  left: 0;
+}
+.month-card {
+  border: 2px solid #1F4287;
+  border-radius: 10px;
+  padding: 0.5rem;
+  background-color: white;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.month-card.highlighted {
+  border-color: #21E6C1;
+  background-color: #E3FAF6;
+}
+.month-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.calendar-mini {
+  font-size: 0.6rem;
+}
+.fc .fc-daygrid-day-frame {
+  min-height: 20px !important;
+}
+.fc .fc-toolbar {
+  display: none;
+}
+.fc .fc-scrollgrid-section-header {
+  display: none;
+}
+body, html {
+  height: 100%;
+  margin: 0;
+}
+.center-grid-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 800px;
+  background-color: white;
+  border: 2px solid #1F4287;
+  border-radius: 10px;
+  padding: 1.5rem;
+  z-index: 1050;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+  
+
+  
+.grid-box {
+  width: 70%;
+  max-width: 800px;
+}
+.grid-button {
+  width: 100%;
+  height: 80px;
+  font-size: 1.2rem;
+}
+.notvisible {
+    display: none;
+}
+  

@@ -1,14 +1,21 @@
 import express from 'express';
-import path from 'path'
-const __dirname = import.meta.dirname;
+
+import bodyParser from 'body-parser';
+
 const app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.static("public"))
-app.set("view engine", "ejs")
+//const __dirname = import.meta.dirname;
 
-const userRouter = require("./routes/login")
+import cors from 'cors';
+app.use(cors());
 
-app.use("/", userRouter)
+app.use(bodyParser.json())
 
-app.listen(3000)
+
+import signuprouter from './router/signup.js';
+app.use("/signup", signuprouter);
+
+import loginrouter from './router/login.js';
+app.use("/login", loginrouter);
+
+app.listen(3000);
