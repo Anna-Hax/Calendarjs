@@ -10,63 +10,7 @@
   <link href="../static/month.css" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <h4>Sidebar Menu</h4>
-    <ul class="list-unstyled">
-      <li><a href="#" class="text-white">Dashboard</a></li>
-      <li><a href="#" class="text-white">Settings</a></li>
-      <li><a href="#" class="text-white">Logout</a></li>
-    </ul>
-  </div>
-
-  <!-- Main content -->
-  <div class="container-fluid">
-    <div class="row p-3">
-      <div class="col-auto">
-        <button id="toggleSidebar" class="btn btn-outline-primary">
-          ☰
-        </button>
-      </div>
-      <div class="col text-center">
-        <button id="typebtn">  View </button>
-        <div class="center-grid-container notvisible" id="popup">
-          <div class="grid-box">
-            <div class="row g-3">
-              <div class="col-4"><button class="btn btn-primary grid-button">Button 1</button></div>
-              <div class="col-4"><button class="btn btn-secondary grid-button">Button 2</button></div>
-              <div class="col-4"><button class="btn btn-success grid-button">Button 3</button></div>
-      
-              <div class="col-4"><button class="btn btn-danger grid-button">Button 4</button></div>
-              <div class="col-4"><button class="btn btn-warning grid-button">Button 5</button></div>
-              <div class="col-4"><button class="btn btn-info grid-button">Button 6</button></div>
-      
-              <div class="col-4"><button class="btn btn-dark grid-button">Button 7</button></div>
-              <div class="col-4"><button class="btn btn-light grid-button">Button 8</button></div>
-              <div class="col-4"><button class="btn btn-outline-primary grid-button">Button 9</button></div>
-            </div>
-          </div>
-        </div>
-      
-      </div>
-      <div class="col text-end">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="workFilter" checked>
-          <label class="form-check-label" for="workFilter">Work</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="personalFilter">
-          <label class="form-check-label" for="personalFilter">Personal</label>
-        </div>
-      </div>
-    </div>
-
-    <!-- Monthwise Mini Calendars -->
-    <div class="row g-3 px-3" id="calendar">
-      <!-- Month cards will be injected here -->
-    </div>
-  </div>
+  <div id="calendar"></div>
 
   <script src="../script/list.js"></script>
 </body>

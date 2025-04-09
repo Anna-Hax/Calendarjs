@@ -21,6 +21,8 @@ document.getElementById('submitBtn').addEventListener('click', async (event) => 
 
         if (response.ok){
             console.log(response)
+            localStorage.setItem('work_email', work_email)
+            localStorage.setItem('personal_email', personal_email)
     
         } else{
             const errorData = await response.json();

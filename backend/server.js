@@ -18,4 +18,7 @@ app.use("/signup", signuprouter);
 import loginrouter from './router/login.js';
 app.use("/login", loginrouter);
 
+import eventrouter from './router/events.js';
+app.use("/event", eventrouter);
+
 app.listen(3000);
