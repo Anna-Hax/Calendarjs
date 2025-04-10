@@ -10,7 +10,11 @@ import cors from 'cors';
 app.use(cors());
 
 app.use(bodyParser.json())
-
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, work_email, personal_email');
+    next();
+});
 
 import signuprouter from './router/signup.js';
 app.use("/signup", signuprouter);

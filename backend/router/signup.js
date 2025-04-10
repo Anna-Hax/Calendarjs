@@ -13,12 +13,15 @@ signuprouter.post('/', async (request, response) => {
   
   try {
     db.run(sql, [request.body.name, request.body.work_email, request.body.personal_email, password], function (err) {
-      if (err) throw err;
-      newId = this.lastID; 
-      response.status(201);
-      let data = { status: 201, message: `Hello there ${request.body.name}.` };
-      let content = JSON.stringify(data);
-      response.send(content);
+      if (err){
+        throw err;
+      } else {
+        newId = this.lastID; 
+        response.status(201);
+        let data = { status: 201, message: `Hello there ${request.body.name}.` };
+        let content = JSON.stringify(data);
+        response.send(content);
+      }
     });
   } catch (err) {
     console.log(err.message);

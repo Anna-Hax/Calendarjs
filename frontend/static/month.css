@@ -97,9 +97,8 @@ body {
   border: none !important;
 }
 
-.fc-day-grid-container.fc-scroller {
-  height: auto!important;
-  overflow-y: auto;
+.fc-daygrid-day {
+  min-height: 150px !important; /* or more */
 }
 
 .modal-content {

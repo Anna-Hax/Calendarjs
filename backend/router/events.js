@@ -2,16 +2,16 @@ import express from 'express';
 const eventrouter = express.Router();
 import {db} from '../connect.js';
 
+//post event
 eventrouter.post('/', (request, response)=>{
     response.set('content-type', 'application/json'); 
 
     let sql = "INSERT INTO event(user, task, type, starttime, endtime, desc) VALUES (?, ?, ?, ?, ?, ?)";
     let find_sql = "SELECT * FROM user WHERE work_email = ? AND personal_email = ?"
     //let find_sql = "SELECT * FROM user WHERE name = ?"
-    var work_email=request.headers["work_email"]
-    var work_email = work_email.slice(1, -1)
+    var work_email=request.headers["work_email"] 
     var personal_email = request.headers["personal_email"]
-    var personal_email = personal_email.slice(1, -1)
+    
     try{
         db.get(find_sql, [work_email, personal_email], (err, row)=>{
             if (err) {
@@ -41,63 +41,36 @@ eventrouter.post('/', (request, response)=>{
     };
 });
 
-eventrouter.get('/work', (request, response) => {
+
+//post task
+eventrouter.post('/post/task', (request, response)=>{
     response.set('content-type', 'application/json'); 
 
-    let sql = "SELECT * FROM event WHERE work_email = ? OR personal_email = ?"
-    let find_sql = "SELECT * FROM user WHERE work_email = ? OR personal_email = ?"
+    let sql = "INSERT INTO task(user, task, type, date, time, desc) VALUES (?, ?, ?, ?, ?, ?)";
+    let find_sql = "SELECT * FROM user WHERE work_email = ? AND personal_email = ?"
     var work_email=request.headers["work_email"]
-    var work_email = work_email.slice(1, -1)
+   
     var personal_email = request.headers["personal_email"]
-    var personal_email = personal_email.slice(1, -1)
-
+    console.log(request.headers)
     try{
         db.get(find_sql, [work_email, personal_email], (err, row)=>{
             if (err) {
                 throw err;
             } else {
                 if (row){
-                    response.status(201);
-                    let content = JSON.stringify(row);
-                    response.send(content);
-                } else{
-                    let data = {status: 400, message: `error`}
-                    let content = JSON.stringify(data);
-                    response.send(content) 
-                };
-            }
-        });
-        
-    } catch (err){
-        console.log(err.message);
-        response.status(468);
-        response.send(`{"code":468, "status":"${err.message}"}`);
-    };
-})
-
-
-eventrouter.post('/task', (request, response)=>{
-    response.set('content-type', 'application/json'); 
-
-    let sql = "INSERT INTO task(user, task, type, date, time, desc) VALUES (?, ?, ?, ?, ?, ?)";
-    let find_sql = "SELECT * FROM user WHERE work_email = ? AND personal_email = ?"
-    
-    try{
-        //db.get(find_sql, [request.headers["work_email"], request.headers["personal_email"]], (err, row)=>{
-        db.get(find_sql, [request.body.work_email, request.body.personal_email], (err, row)=>{
-            if (err) {
-                throw err;
-            } else {
-                if (row){
                     db.run(sql, [row.id, request.body.task, request.body.type, request.body.date, request.body.time, request.body.desc], function(err){
-                        if (err) throw err;
-                        response.status(201);
-                        let data = { status: 201, message: `Task Saved!` };
-                        let content = JSON.stringify(data);
-                        response.send(content);
+                        console.log('hello')
+                        if (err){
+                            console.log(err);
+                        }else {
+                            response.status(201);
+                            let data = { status: 201, message: `Task Saved!` };
+                            let content = JSON.stringify(data);
+                            response.send(content);
+                        }
                     });
                 } else{
-                    console.log(row)
+                    console.log(row, 'hi')
                     let data = {status: 400, message: `Wrong username`}
                     let content = JSON.stringify(data);
                     response.send(content) 
@@ -111,6 +84,58 @@ eventrouter.post('/task', (request, response)=>{
         response.send(`{"code":468, "status":"${err.message}"}`);
     };
 });
+
+//get task
+eventrouter.get('/get/task', (request, response) => {
+    response.set('content-type', 'application/json'); 
+
+    let find_sql = "SELECT * FROM user WHERE work_email = ? AND personal_email = ?"
+    var work_email=request.headers["work_email"]
+    var personal_email = request.headers["personal_email"]
+    console.log(work_email)
+    try{
+        db.all(find_sql, [work_email, personal_email], (err, rows)=>{
+           
+            if (err) {
+                throw err;
+            } else {
+               console.log(rows)
+                if (rows){
+                    rows.forEach(row => {
+                        const user_id = row.id;
+                        let sql = "SELECT * FROM task where user = ?";
+                        db.all(sql, [user_id], (err, row)=>{
+                            if (row){
+
+                                response.status(201);
+                                let content = JSON.stringify(row);
+                                console.log(content)
+                                response.send(content);
+                            } else {
+                                response.send(null)
+                            }
+                        })
+                    
+                    });
+                    
+                } else{
+                    response.status(400)
+                    let data = {status: 400, message: `error`}
+                    let content = JSON.stringify(data);
+                    response.send(content) 
+                };
+            }
+        });
+        
+    } catch (err){
+        console.log(err.message);
+        response.status(468);
+        response.send(`{"code":468, "status":"${err.message}"}`);
+    };
+});
+
+// edit task
+
 
 
 export default eventrouter
