@@ -135,6 +135,45 @@ eventrouter.get('/get/task', (request, response) => {
 });
 
 // edit task
+eventrouter.put('/update/task', (request, response) => {
+    response.set('content-type', 'application/json');
+
+    let find_user_sql = "SELECT * FROM user WHERE work_email = ? AND personal_email = ?";
+    const work_email = request.headers["work_email"];
+    const personal_email = request.headers["personal_email"];
+
+    const { id, task, type, date, time, desc} = request.body; // Assuming these fields are being updated
+
+    console.log(`Updating task dated ${id}`);
+
+    try {
+        db.all(find_user_sql, [work_email, personal_email], (err, rows) => {
+            if (err) {
+                throw err;
+            }
+
+            if (rows && rows.length > 0) {
+                const user_id = rows[0].id;
+
+                let update_task_sql = "UPDATE task SET task = ?, type = ? date = ?, time = ?, desc = ? WHERE id = ? AND user = ?";
+                db.run(update_task_sql, [task, type, date, time, desc, id, user_id], function (err) {
+                    if (err) {
+                        console.error(err.message);
+                        response.status(500).send(JSON.stringify({ code: 500, message: err.message }));
+                    } else {
+                        response.status(200).send(JSON.stringify({ code: 200, message: "Task updated successfully" }));
+                    }
+                });
+
+            } else {
+                response.status(404).send(JSON.stringify({ code: 404, message: "User not found" }));
+            }
+        });
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send(JSON.stringify({ code: 500, message: err.message }));
+    }
+});
 
 
 
