@@ -60,7 +60,6 @@ body {
 /* FullCalendar customization */
 .fc {
   color: #21E6C1;
-  height: 40%;
 }
 
 .fc .fc-toolbar-title {
@@ -95,12 +94,19 @@ body {
 }
 
 .fc-scrollgrid {
-  border: none;
+  border: none !important;
 }
+
 .fc-day-grid-container.fc-scroller {
   height: auto!important;
   overflow-y: auto;
 }
-img{
-  width: 50%;
+
+.modal-content {
+  background: rgba(180, 180, 180, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 15px;
+  color: #fff;
 }

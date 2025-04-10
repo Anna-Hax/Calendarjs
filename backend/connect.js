@@ -26,23 +26,50 @@ db.run(users, [], (err)=> {
     };
 });
 
-const event = `CREATE TABLE IF NOT EXISTS event(
+//const event = `CREATE TABLE IF NOT EXISTS event(
+//    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//    user INTEGER,
+//    task TEXT NOT NULL,
+//    type TEXT NOT NULL,
+//    starttime TEXT,
+//    endtime TEXT,
+//    desc TEXT,
+//    FOREIGN KEY(user) REFERENCES user(id)
+//)`;
+//db.run(event, [], (err)=> {
+//    if(err){
+//        console.log(err.message)
+//    } else{
+//        console.log('Created Table event / table event already exists')
+//    }
+//});
+
+
+const task = `CREATE TABLE IF NOT EXISTS task(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user INTEGER,
     task TEXT NOT NULL,
     type TEXT NOT NULL,
-    starttime TEXT,
-    endtime TEXT,
+    date TEXT,
+    time TEXT,
     desc TEXT,
     FOREIGN KEY(user) REFERENCES user(id)
 )`;
-db.run(event, [], (err)=> {
+db.run(task, [], (err)=> {
     if(err){
         console.log(err.message)
     } else{
-        console.log('Created Table work_event / work_event already exists')
+        console.log('Created Table task / table task already exists')
     }
 });
 
+//const delsql = "DROP TABLE event";
+//db.run(delsql, [], (err)=> {
+//    if(err){
+//        console.log(err.message)
+//    } else{
+//        console.log('deleted')
+//    }
+//});
 
 export {db};
