@@ -9,6 +9,11 @@
   
 </head>
 <body>
+    <div class="sidebar">
+        <div>Add Task</div>
+        <div>Make Teams</div>
+        <div>blah blah blah</div>
+    </div>
 
     <div id="calendar"></div>
 
@@ -18,15 +23,14 @@
         var calendarEl = document.getElementById('calendar');
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          timeZone: 'UTC',
-          initialView: 'dayGridWeek',
-          headerToolbar: {
-            left: 'prev,next',
-            center: 'title',
-            right: 'dayGridWeek,dayGridDay'
-          },
-          editable: true,
-
+            timeZone: 'UTC',
+            initialView: 'dayGridWeek',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'dayGridWeek,dayGridDay'
+            },
+            editable: true, 
         });
 
         calendar.render();

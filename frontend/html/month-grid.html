@@ -12,17 +12,43 @@
 </head>
 <body>
 
-  <!-- Sidebar -->
-  <div id="sidebar" class="sidebar">
-    <h4>Sidebar Menu</h4>
-    <ul class="list-unstyled">
-      <li><a href="#" class="text-white">Dashboard</a></li>
-      <li><a href="#" class="text-white">Settings</a></li>
-      <li><a href="#" class="text-white">Logout</a></li>
-    </ul>
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div id="sidebar" class="d-flex flex-column p-3">
+      <button id="toggle-btn">☰</button>
+      <ul class="nav nav-pills flex-column mb-auto mt-3">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <span class="me-2">🏠</span>
+            <span class="link-text">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+           <!-- <span class="me-2"><img src = "https://img.icons8.com/?size=100&id=5CtiUq0Pvtnd&format=png&color=000000"></span>-->
+            <span class="link-text">Add Task</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <span class="me-2"></span>
+            <span class="link-text">Add Teams</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link">
+            <span class="me-2">⚙️</span>
+            <span class="link-text">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- Calendar Area -->
+    <div id="calendar-container">
+      <div id="calendar"></div>
+    </div>
   </div>
-
-  <div id="calendar"></div>
 
   <script src="../script/month-grid.js"></script>
 </body>
