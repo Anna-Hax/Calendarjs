@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     eventLimit: false,
     editable: true,
     selectable: true,
-    events: events,
+    
   });
   calendar.render();
 
@@ -104,7 +104,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   gettask();
-
+  function logout(){
+    localStorage.clear();
+    window.location.href = '../html/login.html'
+  }
+  document.getElementById('logout').addEventListener('click', ()=> {
+    logout();
+  })
   
 });
 

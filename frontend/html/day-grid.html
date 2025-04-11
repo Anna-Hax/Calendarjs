@@ -47,9 +47,15 @@
       </li>
       
       <li>
-        <a href="#" class="nav-link">
+        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#navModal">
           <span class="me-2">⚙️</span>
-          <span class="link-text">Settings</span>
+          <span class="link-text">Change Calendar</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link" id="logout">
+          <span class="me-2"></span>
+          <span class="link-text">Logout</span>
         </a>
       </li>
     </ul>
@@ -98,6 +104,26 @@
           </div>
           <button type="submit" class="btn" style="background-color:#21E6C1; color:#000;">Update Task</button>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--options-->
+<div class="modal fade" id="navModal" tabindex="-1" aria-labelledby="navModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="navModalLabel">Choose a Section</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="d-grid gap-3">
+          <a href="day.html" class="btn btn-outline-light"> Day Grid Month View </a>
+          <a href="day-grid.html" class="btn btn-outline-light">Day Grid Week </a>
+          <a href="list.html" class="btn btn-outline-light">List Week</a>
+          <a href="month-grid.html" class="btn btn-outline-light">Multi Month Year Stack</a>
+          <a href="multi-month-stack.html" class="btn btn-outline-light">Multi Month Year</a>
+        </div>
       </div>
     </div>
   </div>
