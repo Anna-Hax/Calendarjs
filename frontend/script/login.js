@@ -1,4 +1,4 @@
-const postlogincred = 'http://localhost:3000/login/'
+const postlogincred = 'https://calendarjs-qc65.onrender.com/login/'
 
 
 document.getElementById('submitBtn').addEventListener('click', async (event) => {

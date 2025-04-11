@@ -1,4 +1,4 @@
-const postsigncred = 'http://localhost:3000/signup/'
+const postsigncred = 'https://calendarjs-qc65.onrender.com/signup/'
 
 document.getElementById('submitBtn').addEventListener('click', async (event) => {
     event.preventDefault();

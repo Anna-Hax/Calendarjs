@@ -1,6 +1,6 @@
 const calendarEl = document.getElementById('calendar');
-const linktotask = 'http://localhost:3000/event/post/task/'
-const linktogettask = 'http://localhost:3000/event/get/task/'
+const linktotask = 'https://calendarjs-qc65.onrender.com/event/post/task/'
+const linktogettask = 'https://calendarjs-qc65.onrender.com/event/get/task/'
 const work_email = localStorage.getItem("work_email")
 const personal_email = localStorage.getItem("personal_email")
 

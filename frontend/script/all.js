@@ -1,3 +1,4 @@
+const linktogettask = 'https://calendarjs-qc65.onrender.com/event/get/task/'
 document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
     let currentDay = String(now.getDate()).padStart(2, '0');
