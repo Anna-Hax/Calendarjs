@@ -6,7 +6,7 @@ const app = express()
 
 //const __dirname = import.meta.dirname;
 
-import cors from './cors/server.js';
+import cors from './cors/index.js';
 
 app.use(cors)
 app.use(bodyParser.json())
