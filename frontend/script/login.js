@@ -1,4 +1,6 @@
 const postlogincred = 'http://localhost:3000/login/'
+
+
 document.getElementById('submitBtn').addEventListener('click', async (event) => {
     
     event.preventDefault();
@@ -20,7 +22,7 @@ document.getElementById('submitBtn').addEventListener('click', async (event) => 
             const result = await response.json();
             localStorage.setItem('work_email', result.work_email)
             localStorage.setItem('personal_email', result.personal_email)
-    
+            window.location.href = '../html/day.html'
         } else{
             const errorData = await response.json();
             console.error("Login error:", errorData);

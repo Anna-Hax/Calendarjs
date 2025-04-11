@@ -2,10 +2,14 @@ const calendarEl = document.getElementById('calendar');
 const linktotask = 'http://localhost:3000/event/post/task/'
 const linktogettask = 'http://localhost:3000/event/get/task/'
 
-localStorage.setItem("work_email", "dhruvi_p@ch.iitr.ac.in")
-localStorage.setItem("personal_email", "dhruvi.purohit06@gmail.com")
 
-console.log(localStorage.getItem("work_email"), localStorage.getItem("personal_email"))
+const work_email = localStorage.getItem("work_email")
+const personal_email = localStorage.getItem("personal_email")
+
+if (!work_email || !personal_email){
+  alert('Access denied')
+  window.location.href = '../html/signup.html'
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   const events = gettask();

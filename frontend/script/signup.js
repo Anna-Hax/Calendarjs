@@ -23,7 +23,7 @@ document.getElementById('submitBtn').addEventListener('click', async (event) => 
             console.log(response)
             localStorage.setItem('work_email', work_email)
             localStorage.setItem('personal_email', personal_email)
-    
+            window.location.href = '../html/day.html'
         } else{
             const errorData = await response.json();
             console.error("Signup error:", errorData);
