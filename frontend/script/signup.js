@@ -3,7 +3,6 @@ const postsigncred = 'http://localhost:3000/signup/'
 document.getElementById('submitBtn').addEventListener('click', async (event) => {
     event.preventDefault();
     const headers = {'Content-Type':'application/json',
-        'Access-Control-Allow-Origin':'*',
         'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS, GET'}
 
     const name = document.getElementById('name').value

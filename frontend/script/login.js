@@ -7,7 +7,6 @@ document.getElementById('submitBtn').addEventListener('click', async (event) => 
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
     const headers = {'Content-Type':'application/json',
-        'Access-Control-Allow-Origin':'*',
         'Access-Control-Allow-Methods':'POST,PATCH,OPTIONS, GET'}
     try{
        

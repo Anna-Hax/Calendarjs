@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
       const headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST,PATCH,OPTIONS,GET',
         'work_email': work_email,
         'personal_email': personal_email
