@@ -15,50 +15,10 @@ document.addEventListener('DOMContentLoaded', function () {
     eventLimit: false,
     editable: true,
     selectable: true,
-    
-    events: events, 
+    events: events,
+  });
+  calendar.render();
 
-    eventClick: function (info) {
-      const event = info.event;
-      document.getElementById('editTaskTitle').value = event.title;
-      document.getElementById('editTaskDate').value = event.start.toISOString().split('T')[0];
-      document.getElementById('editTaskTime').value = event.start.toTimeString().slice(0, 5);
-      document.getElementById('editTypeDropdown').value = event.extendedProps.type || '';
-      document.getElementById('editTaskDesc').value = event.extendedProps.description || '';
-
-     
-      document.getElementById('editTaskForm').setAttribute('data-event-id', event.id);
-
-    
-      document.getElementById('editTaskModal').modal('show');
-
-     }
-   });
- 
-   calendar.render();
- 
-   // Handle Edit form submission
-   document.getElementById('editTaskForm').addEventListener('submit', function (e) {
-     e.preventDefault();
- 
-     const eventId = e.target.getAttribute('data-event-id');
-     const event = calendar.getEventById(eventId);
- 
-     if (event) {
-       const newTitle = document.getElementById('editTaskTitle').value;
-       const newDate = document.getElementById('editTaskDate').value;
-       const newTime = document.getElementById('editTaskTime').value;
-       const newStart = `${newDate}T${newTime}`;
- 
-       event.setProp('title', newTitle);
-       event.setStart(newStart);
-       event.setExtendedProp('type', document.getElementById('editTypeDropdown').value);
-       event.setExtendedProp('description', document.getElementById('editTaskDesc').value);
-     }
-      });
-    
-
-  
   const toggleBtn = document.getElementById('toggle-btn');
   const sidebar = document.getElementById('sidebar'); 
   toggleBtn.addEventListener('click', () => {
@@ -123,7 +83,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const result = await response.json();
         console.log(result)
         const tasks = result;
-        return tasks
+        tasks.forEach(task => {
+          calendar.addEvent({
+            'title': task.task,
+            'start': task.date,
+            'endtime': task.time,
+          })
+        });
+        
       } else{
         const errorData = await response.json();
         console.error("Error:", errorData);
