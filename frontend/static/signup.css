@@ -1,5 +1,6 @@
-body {  
-    color: #01070d;
+body { 
+    background-color: #000; 
+    color: white;
     min-height: 100vh;
   }
   .form-container {
@@ -8,7 +9,7 @@ body {
     padding: 20px;
     
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(238, 235, 235, 0.1);
   }
   .btn{
     color: #1a1a2e;
