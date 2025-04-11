@@ -8,13 +8,56 @@ localStorage.setItem("personal_email", "dhruvi.purohit06@gmail.com")
 console.log(localStorage.getItem("work_email"), localStorage.getItem("personal_email"))
 
 document.addEventListener('DOMContentLoaded', function () {
-  
+  const events = gettask();
   const calendar = new FullCalendar.Calendar(calendarEl, {
     themeSystem: 'bootstrap5',
     initialView: 'dayGridMonth',
     eventLimit: false,
-  });
-  calendar.render(); 
+    editable: true,
+    selectable: true,
+    
+    events: events, 
+
+    eventClick: function (info) {
+      const event = info.event;
+      document.getElementById('editTaskTitle').value = event.title;
+      document.getElementById('editTaskDate').value = event.start.toISOString().split('T')[0];
+      document.getElementById('editTaskTime').value = event.start.toTimeString().slice(0, 5);
+      document.getElementById('editTypeDropdown').value = event.extendedProps.type || '';
+      document.getElementById('editTaskDesc').value = event.extendedProps.description || '';
+
+     
+      document.getElementById('editTaskForm').setAttribute('data-event-id', event.id);
+
+    
+      document.getElementById('editTaskModal').modal('show');
+
+     }
+   });
+ 
+   calendar.render();
+ 
+   // Handle Edit form submission
+   document.getElementById('editTaskForm').addEventListener('submit', function (e) {
+     e.preventDefault();
+ 
+     const eventId = e.target.getAttribute('data-event-id');
+     const event = calendar.getEventById(eventId);
+ 
+     if (event) {
+       const newTitle = document.getElementById('editTaskTitle').value;
+       const newDate = document.getElementById('editTaskDate').value;
+       const newTime = document.getElementById('editTaskTime').value;
+       const newStart = `${newDate}T${newTime}`;
+ 
+       event.setProp('title', newTitle);
+       event.setStart(newStart);
+       event.setExtendedProp('type', document.getElementById('editTypeDropdown').value);
+       event.setExtendedProp('description', document.getElementById('editTaskDesc').value);
+     }
+      });
+    
+
   
   const toggleBtn = document.getElementById('toggle-btn');
   const sidebar = document.getElementById('sidebar'); 
@@ -80,26 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const result = await response.json();
         console.log(result)
         const tasks = result;
-        eventColor = 'red'
-        result.forEach(task => {
-          let eventColor = 'gray';
-          if (task.type === 'work') {
-            eventColor = 'blue';
-          } else if (task.type === 'personal') {
-            eventColor = 'green';
-          }
-        
-          calendar.addEvent({
-            title: task.task,
-            start: task.date,
-            end: task.date,
-            backgroundColor: eventColor, // for some libraries
-            color: eventColor,           // for FullCalendar
-            extendedProps: {
-              type: task.type
-            }        
-          });
-        })
+        return tasks
       } else{
         const errorData = await response.json();
         console.error("Error:", errorData);
@@ -112,15 +136,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   gettask();
 
-  function openEditModal(task) {
-    document.getElementById('editTaskTitle').value = task.title;
-    document.getElementById('editTypeDropdown').value = task.type;
-    document.getElementById('editTaskDate').value = task.date;
-    document.getElementById('editTaskTime').value = task.time;
-    document.getElementById('editTaskDesc').value = task.description;
-  
-    
-  }
   
 });
 
